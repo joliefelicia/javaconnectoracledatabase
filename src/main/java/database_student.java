@@ -10,7 +10,7 @@ private Connection db;
 
 
 
-        db=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","hr","318630");
+        db=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","user","password");
 
     }
 
