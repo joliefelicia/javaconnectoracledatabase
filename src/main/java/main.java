@@ -1,62 +1,58 @@
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class main {
     public static void main(String[] args) {
         try {
             database_student db = new database_student();
-            int id,pilihan;
-            String username,fullname;
+            ArrayList<student> students=db.selectStudent();
+            int pilihan;
+            String fullname,username;
+            int id;
             Scanner s=new Scanner (System.in);
             char mau;
             System.out.println("Database is connected: "+db.isConnected());
             do {
-                System.out.println("menu: \n1. insert\n2. update by id\n3. update by username\n4. delete from id\n5.ArrayList\n" +
+                System.out.println("menu: \n1. insert\n2. update by id\n3. delete from id\n4 ArrayList\n" +
                         "pilihan: ");
                 pilihan = s.nextInt();
                 if (pilihan == 1) {
-                    username = s.nextLine();
                     System.out.println("username: ");
                     username = s.nextLine();
-                    System.out.println("id: ");
-                    id = s.nextInt();
-                    fullname = s.nextLine();
+                    username= s.nextLine();
                     System.out.println("fullname: ");
                     fullname = s.nextLine();
-                    db.insertStudents(id, username, fullname);
+                    System.out.print(username);
+                    System.out.println(fullname);
+                    db.insertStudents(username, fullname);
+
                 }
                 if (pilihan == 2) {
-                    username = s.nextLine();
                     System.out.println("username: ");
+                    username = s.nextLine();
                     username = s.nextLine();
                     System.out.println("id: ");
                     id = s.nextInt();
                     fullname = s.nextLine();
                     System.out.println("fullname: ");
                     fullname = s.nextLine();
-                    db.updateStudents(id, username, fullname);
-                }
-                if (pilihan == 3) {
-                    username = s.nextLine();
-                    System.out.println("username: ");
-                    username = s.nextLine();
-                    System.out.println("id: ");
-                    id = s.nextInt();
-                    fullname = s.nextLine();
-                    System.out.println("fullname: ");
-                    fullname = s.nextLine();
-                    db.updateStudentswithusername(id, username, fullname);
+                    db.updateStudents(id,username,fullname);
+
+
                 }
 
-                if (pilihan == 4) {
+                if (pilihan == 3) {
                     System.out.println("id:");
                     id = s.nextInt();
                     db.deleteUser(id);
+
+
                 }
-                if(pilihan==5){
-                    ArrayList<student> students=db.selectStudent();
-                    for(student student:students){
-                        System.out.println(student.getId()+" "+student.getUsername()+" "+student.getFullname());
+                if(pilihan==4){
+                    students=db.selectStudent();
+                    for(student st:students){
+                        System.out.println(st.getId()+" "+st.getUsername()+" "+st.getFullname());
                     }
                 }
 
@@ -75,3 +71,5 @@ public class main {
 
     }
 }
+
+
